@@ -1,0 +1,82 @@
+// Write your overrides
+
+// Active nav link styling
+.layout-vertical-nav {
+  // Top level nav link active
+  .nav-link {
+    > .router-link-exact-active {
+      background: linear-gradient(135deg, rgb(var(--v-global-theme-primary)) 0%, rgba(var(--v-global-theme-primary), 0.8) 100%);
+      color: rgb(var(--v-theme-on-primary)) !important;
+      box-shadow: 0 4px 12px rgba(var(--v-global-theme-primary), 0.4);
+      
+      .nav-item-icon {
+        color: rgb(var(--v-theme-on-primary)) !important;
+      }
+      
+      .nav-item-title {
+        color: rgb(var(--v-theme-on-primary)) !important;
+        font-weight: 600;
+      }
+    }
+
+    > a:not(.router-link-exact-active):hover {
+      background-color: rgba(var(--v-global-theme-primary), 0.1);
+      
+      .nav-item-icon,
+      .nav-item-title {
+        color: rgb(var(--v-global-theme-primary));
+      }
+    }
+  }
+
+  // Nav group styling - only style when open, not active
+  .nav-group {
+    // Open group - subtle background
+    &.open > :first-child {
+      background-color: rgba(var(--v-global-theme-primary), 0.08);
+      
+      .nav-item-icon {
+        color: rgb(var(--v-global-theme-primary));
+      }
+      
+      .nav-item-title {
+        color: rgb(var(--v-global-theme-primary));
+      }
+    }
+
+    // Remove active highlight from parent group
+    &.active:not(.open) > :first-child {
+      background-color: transparent;
+      
+      .nav-item-icon,
+      .nav-item-title {
+        color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+      }
+    }
+  }
+
+  // Nested nav link (submenu) active state - THIS IS THE KEY
+  .nav-group .nav-link {
+    > .router-link-exact-active {
+      background: linear-gradient(135deg, rgb(var(--v-global-theme-primary)) 0%, rgba(var(--v-global-theme-primary), 0.8) 100%);
+      color: rgb(var(--v-theme-on-primary)) !important;
+      box-shadow: 0 2px 8px rgba(var(--v-global-theme-primary), 0.3);
+      
+      .nav-item-icon,
+      .nav-item-title {
+        color: rgb(var(--v-theme-on-primary)) !important;
+        font-weight: 600;
+      }
+    }
+
+    // Hover state for inactive submenu items
+    > a:not(.router-link-exact-active):hover {
+      background-color: rgba(var(--v-global-theme-primary), 0.1);
+      
+      .nav-item-icon,
+      .nav-item-title {
+        color: rgb(var(--v-global-theme-primary));
+      }
+    }
+  }
+}
